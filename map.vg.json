@@ -7,14 +7,14 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/oceans%20(1).topojson",
+        "url": "https://raw.githubusercontent.com/shaunliaw122/week9homework1/refs/heads/main/oceans.topojson",
         "format": {"type": "topojson", "feature": "oceans"}
       },
       "mark": {"type": "geoshape", "fill": "skyblue"}
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/shaunliaw122/Week-9-Homework/main/Week%209%20Homework/ne_110m_admin_0_countries.json",
+        "url": "https://raw.githubusercontent.com/shaunliaw122/week9homework1/refs/heads/main/ne_110m_admin_0_countries.json",
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
       "transform": [
@@ -22,7 +22,7 @@
           "lookup": "properties.ADM0_ISO",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/WorldGDP3.csv",
+              "url": "https://raw.githubusercontent.com/shaunliaw122/week9homework1/refs/heads/main/WorldGDP3.csv",
               "format": {"type": "csv"}
             },
             "key": "Country Code",
@@ -60,7 +60,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/ne_110m_graticules_30.json",
+        "url": "https://raw.githubusercontent.com/shaunliaw122/week9homework1/refs/heads/main/ne_110m_graticules_30.json",
         "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
       },
       "mark": {"type": "geoshape", "fill": null, "stroke": "darkgray"}
