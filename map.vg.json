@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Global GDP Growth by Country (2022)",
+  "width": 800,
+  "height": 600,
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/oceans%20(1).topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/shaunliaw122/Week-9-Homework/main/Week%209%20Homework/ne_110m_admin_0_countries.json",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.ADM0_ISO",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/WorldGDP3.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "Country Code",
+            "fields": ["GDP Growth"]
+          }
+        },
+        {
+          "calculate": "isNaN(parseFloat(datum['GDP Growth'])) || datum['GDP Growth'] === null ? null : parseFloat(datum['GDP Growth'])",
+          "as": "GDP Growth (%)"
+        },
+        {"filter": "datum['GDP Growth (%)'] != null"}
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",  
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "GDP Growth (%)",
+          "type": "quantitative",
+          "scale": {
+            "domain": [-20, 0, 5, 10, 20, 40, 60], 
+             "range": ["#67001f", "#d73027", "#f46d43","#fdae61",  
+                      "#fee08b",  "#d9ef8b",  "#1a9850"],
+            "type": "threshold"
+          },
+          "title": "GDP Growth (%)"
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "GDP Growth (%)", "type": "quantitative", "format": ".2f", "title": "GDP Growth (%)"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/shaunliaw122/Week9Homework/refs/heads/main/Week%209%20Homework/ne_110m_graticules_30.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "darkgray"}
+    }
+  ]
+}
